@@ -1,4 +1,4 @@
-package ProjetoAlfa.dominio;
+package Arquivo.dominio;
 import java.text.DecimalFormat;
 
 public class Produto 

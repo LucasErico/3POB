@@ -1,58 +1,58 @@
-package ProjetoAlfa.controle;
-import  ProjetoAlfa.dominio.Produto;
+package ProjetoBravo.controle;
+import  ProjetoBravo.dominio.Paciente;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ControlaProduto {
-    private ArrayList<Produto> produtos;
+    private ArrayList<Paciente> pacientes;
     
     public ControlaProduto()
     {
-        this.produtos = new ArrayList<>();
+        this.pacientes = new ArrayList<>();
     }
 
     public void adicionarProduto(int id, String nome, double valor)
     {
-        Produto produto = new Produto(id, nome, valor);
-        produtos.add(produto);
+        Paciente paciente = new Paciente(id, nome, valor);
+        pacientes.add(paciente);
         System.out.println("\nProduto adicionado com sucesso!");
     }
 
     public void listarProduto()
     {
-        if(produtos.isEmpty())
+        if(pacientes.isEmpty())
         {
             System.out.println("\nNenhum produto cadastrado!");
         }
         else
         {
-            for(Produto produto: produtos)
+            for(Paciente paciente: pacientes)
             {
                 System.out.println("------------------------------");
-                produto.listarProduto();
+                paciente.listarPaciente();
                 System.out.println("------------------------------");
             }
         }
     }
 
-    public void alterarProduto(int id) {
-        Produto produto = buscarProdutoPorId(id);
-        if (produto != null) 
+    public void alterarPaciente(int numero) {
+        Paciente paciente = buscarPacientePorNumero(numero);
+        if (paciente != null) 
         {
             Scanner entrada = new Scanner(System.in);
             System.out.print("Novo nome do produto: ");
-            String novoNome = entrada.nextLine();
+            double novoPeso = entrada.nextDouble();
             System.out.print("Novo valor do produto: ");
-            double novoValor = entrada.nextDouble();
+            double novaAltura= entrada.nextDouble();
             
-            produto.setNome(novoNome);
-            produto.setValor(novoValor);
-            System.out.println("Produto alterado com sucesso!");
+            paciente.setPeso(novoPeso);
+            paciente.setAltura(novaAltura);
+            System.out.println("Paciente alterado com sucesso!");
 
         } 
         else 
         {
-            System.out.println("Produto com ID " + id + " não encontrado.");
+            System.out.println("Paciente com Número " + numero + " não encontrado.");
         }
        
     }
@@ -67,10 +67,10 @@ public class ControlaProduto {
         }
     }
 
-    private Produto buscarProdutoPorId(int id) {
-        for (Produto produto : produtos) {
-            if (produto.getID() == id) {
-                return produto;
+    private Paciente buscarPacientePorNumero(int numero) {
+        for (Paciente paciente : pacientes) {
+            if (paciente.getNumero() == numero) {
+                return paciente;
             }
         }
         return null;
