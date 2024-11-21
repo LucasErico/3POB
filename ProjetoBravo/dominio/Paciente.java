@@ -47,9 +47,9 @@ public class Paciente
         this.altura = altura;
     }
 
-    public void listarProduto()
+    public void listarPaciente()
     {
-        System.out.println("\nNúmero: "+numero+"\nPeso: "+decimal.format(peso)+"\nAltura: "+decimal.format(altura)+"\n");
+        System.out.println("\nNúmero: "+numero+"\nPeso: "+decimal.format(peso)+"kg\nAltura: "+decimal.format(altura)+"m\n");
     }
 
 }
