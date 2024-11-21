@@ -22,12 +22,17 @@ public class ControlaProduto {
     }
 
     public void listarProdutos() {
-        if (produtos.isEmpty()) {
-            System.out.println("Nenhum produto cadastrado.");
-        } else {
-            System.out.println("Lista de Produtos:");
-            for (Produto produto : produtos) {
+        if(produtos.isEmpty())
+        {
+            System.out.println("\nNenhum produto cadastrado!");
+        }
+        else
+        {
+            for(Produto produto: produtos)
+            {
+                System.out.println("------------------------------");
                 produto.listarProduto();
+                System.out.println("------------------------------");
             }
         }
     }
@@ -35,28 +40,35 @@ public class ControlaProduto {
     public void alterarProduto(int id) {
         Produto produto = buscarProdutoPorId(id);
         if (produto != null) {
-            Scanner scanner = new Scanner(System.in);
+            Scanner entrada = new Scanner(System.in);
+            System.out.println();
             System.out.print("Novo nome do produto: ");
-            String novoNome = scanner.nextLine();
+            String novoNome = entrada.nextLine();
+            System.out.println();
             System.out.print("Novo valor do produto: ");
-            double novoValor = scanner.nextDouble();
+            double novoValor = entrada.nextDouble();
             
             produto.setNome(novoNome);
             produto.setValor(novoValor);
             salvarProdutos();
+            System.out.println();
             System.out.println("Produto alterado com sucesso!");
         } else {
+            System.out.println();
             System.out.println("Produto com ID " + id + " não encontrado.");
         }
     }
+
 
     public void excluirProduto(int id) {
         Produto produto = buscarProdutoPorId(id);
         if (produto != null) {
             produtos.remove(produto);
             salvarProdutos();
+            System.out.println();
             System.out.println("Produto excluído com sucesso!");
         } else {
+            System.out.println();
             System.out.println("Produto com ID " + id + " não encontrado.");
         }
     }
@@ -100,52 +112,88 @@ public class ControlaProduto {
         }
     }
 
-    public static void main(String[] args) {
+public static void clearScreen() {  
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();  
+}  
+
+public static void main(String[] args) {
+
         ControlaProduto controle = new ControlaProduto();
         Scanner scanner = new Scanner(System.in);
         int opcao;
 
         do {
-            System.out.println("\nMenu:");
-            System.out.println("1. Adicionar Produto");
-            System.out.println("2. Listar Produtos");
-            System.out.println("3. Alterar Produto");
-            System.out.println("4. Excluir Produto");
-            System.out.println("0. Sair");
-            System.out.print("Escolha uma opção: ");
+
+            System.out.flush();
+            //opcao = menu();
+            clearScreen();
+            System.out.println("\n\t--- MENU ---\n");
+            System.out.println("Opção 1: Adicionar produto");
+            System.out.println("Opção 2: Listar produtos");
+            System.out.println("Opção 3: Alterar produto");
+            System.out.println("Opção 4: Excluir produto");
+            System.out.println("Opção 5: Sair\n");
+        
+            System.out.print("Opção desejada: ");
             opcao = scanner.nextInt();
 
-            switch (opcao) {
+            switch (opcao) 
+            {
                 case 1:
-                    System.out.print("ID do Produto: ");
+
+                    clearScreen();
+                    System.out.println("\n\t--- ADICIONAR PRODUTO ---\n");
+                    System.out.print("Entre com o ID do produto: ");
                     int id = scanner.nextInt();
-                    scanner.nextLine(); // Limpa o buffer do scanner
-                    System.out.print("Nome do Produto: ");
+                    System.out.println();
+                    System.out.print("Entre com o nome do produto: ");
+                    scanner.nextLine();
                     String nome = scanner.nextLine();
-                    System.out.print("Valor do Produto: ");
+                    System.out.println();
+                    System.out.print("Entre com o valor do produto: ");
                     double valor = scanner.nextDouble();
                     controle.adicionarProduto(id, nome, valor);
                     break;
+
                 case 2:
-                    controle.listarProdutos();
+
+                    clearScreen();
+                    System.out.println("\n\t--- LISTA DE PRODUTOS ---\n");
+                    controle.listarProdutos();        
                     break;
+
                 case 3:
+                    clearScreen();
+                    System.out.println("\n\t--- ALTERAR PRODUTO ---\n");
                     System.out.print("ID do Produto a alterar: ");
                     int idAlterar = scanner.nextInt();
                     scanner.nextLine(); // Limpa o buffer
                     controle.alterarProduto(idAlterar);
                     break;
+
                 case 4:
+                    clearScreen();
+                    System.out.println("\n\t--- EXCLUIR PRODUTO ---\n");
                     System.out.print("ID do Produto a excluir: ");
                     int idExcluir = scanner.nextInt();
                     controle.excluirProduto(idExcluir);
                     break;
-                case 0:
-                    System.out.println("Encerrando o programa.");
+            
+                case 5:
+                    System.out.println("\nEncerrado!");
                     break;
+
                 default:
-                    System.out.println("Opção inválida. Tente novamente.");
+                    System.out.println("\nOpção inválida!");
+                    break;
             }
+
+   
+            System.out.println("\nAperte qualquer tecla para continuar...");
+            //scanner.skip("\n");
+            scanner.nextLine();
+            scanner.nextLine();
         } while (opcao != 0);
 
         scanner.close();
