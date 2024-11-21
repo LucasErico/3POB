@@ -8,6 +8,13 @@
             "type": "java",
             "name": "ControlaPaciente",
             "request": "launch",
+            "mainClass": "pacienteArquivo.controle.ControlaPaciente",
+            "projectName": "3POB_6e6e2d64"
+        },
+        {
+            "type": "java",
+            "name": "ControlaPaciente",
+            "request": "launch",
             "mainClass": "ProjetoBravo.controle.ControlaPaciente",
             "projectName": "3POB_6e6e2d64"
         },
