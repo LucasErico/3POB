@@ -40,18 +40,22 @@ public class ControlaProduto {
         if (produto != null) 
         {
             Scanner entrada = new Scanner(System.in);
+            System.out.println();
             System.out.print("Novo nome do produto: ");
             String novoNome = entrada.nextLine();
+            System.out.println();
             System.out.print("Novo valor do produto: ");
             double novoValor = entrada.nextDouble();
             
             produto.setNome(novoNome);
             produto.setValor(novoValor);
+            System.out.println();
             System.out.println("Produto alterado com sucesso!");
 
         } 
         else 
         {
+            System.out.println();
             System.out.println("Produto com ID " + id + " não encontrado.");
         }
        
@@ -61,8 +65,10 @@ public class ControlaProduto {
         Produto produto = buscarProdutoPorId(id);
         if (produto != null) {
             produtos.remove(produto);
+            System.out.println();
             System.out.println("Produto excluído com sucesso!");
         } else {
+            System.out.println();
             System.out.println("Produto com ID " + id + " não encontrado.");
         }
     }
@@ -111,9 +117,11 @@ public class ControlaProduto {
                     System.out.println("\n\t--- ADICIONAR PRODUTO ---\n");
                     System.out.print("Entre com o ID do produto: ");
                     int id = scanner.nextInt();
+                    System.out.println();
                     System.out.print("Entre com o nome do produto: ");
-                    scanner.skip("\n");
+                    scanner.nextLine();
                     String nome = scanner.nextLine();
+                    System.out.println();
                     System.out.print("Entre com o valor do produto: ");
                     double valor = scanner.nextDouble();
                     controle.adicionarProduto(id, nome, valor);
@@ -127,7 +135,8 @@ public class ControlaProduto {
                     break;
 
                 case 3:
-
+                    clearScreen();
+                    System.out.println("\n\t--- ALTERAR PRODUTO ---\n");
                     System.out.print("ID do Produto a alterar: ");
                     int idAlterar = scanner.nextInt();
                     scanner.nextLine(); // Limpa o buffer
@@ -135,7 +144,8 @@ public class ControlaProduto {
                     break;
 
                 case 4:
-
+                    clearScreen();
+                    System.out.println("\n\t--- EXCLUIR PRODUTO ---\n");
                     System.out.print("ID do Produto a excluir: ");
                     int idExcluir = scanner.nextInt();
                     controle.excluirProduto(idExcluir);
@@ -152,7 +162,8 @@ public class ControlaProduto {
 
    
             System.out.println("\nAperte qualquer tecla para continuar...");
-            scanner.skip("\n");
+            //scanner.skip("\n");
+            scanner.nextLine();
             scanner.nextLine();
 
         }while(opcao!=5);
